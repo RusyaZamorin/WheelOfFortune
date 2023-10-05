@@ -2341,8 +2341,8 @@ MonoBehaviour:
   WheelArrow: {fileID: 235325494}
   AudioSource: {fileID: 734119336}
   FastRotatingDuration: 2
-  SlowRotatingDuration: 1.5
-  NumberFastRotating: 10
+  SlowRotatingDuration: 3
+  NumberFastRotating: 4
 --- !u!114 &734119335
 MonoBehaviour:
   m_ObjectHideFlags: 0

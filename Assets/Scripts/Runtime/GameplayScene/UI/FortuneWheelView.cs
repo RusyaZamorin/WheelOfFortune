@@ -15,11 +15,11 @@ namespace WheelOfFortune.GameplayScene.UI
         public Transform WheelRotationTransform;
         public WheelArrow WheelArrow;
         public AudioSource AudioSource;
-        
+
         public float FastRotatingDuration = 2f;
         public float SlowRotatingDuration = 2f;
         public int NumberFastRotating = 10;
-        
+
         private FortuneWheel fortuneWheel;
 
         [Inject]
@@ -36,22 +36,25 @@ namespace WheelOfFortune.GameplayScene.UI
 
         private async UniTask PlayWheelAnimation()
         {
-            WheelRotationTransform
-                .DORotate(new Vector3(0, 0, WheelRotationTransform.transform.eulerAngles.z + 360f),
-                    FastRotatingDuration / NumberFastRotating, RotateMode.FastBeyond360)
-                .SetLoops(NumberFastRotating, LoopType.Restart)
-                .SetEase(Ease.Linear);
-
-            await UniTask.Delay(TimeSpan.FromSeconds(FastRotatingDuration));
-
             var resultLocalAngle = Sectors.First(s => s.Value == fortuneWheel.ResultValue).transform.localEulerAngles.z;
 
-            WheelRotationTransform
+            var sequence = DOTween.Sequence();
+            
+            sequence.Append(WheelRotationTransform
+                .DORotate(new Vector3(0, 0, -360f),
+                    FastRotatingDuration / NumberFastRotating, RotateMode.FastBeyond360)
+                .SetRelative()
+                .SetLoops(NumberFastRotating, LoopType.Restart)
+                .SetEase(Ease.Linear));
+
+            sequence.Append(WheelRotationTransform
                 .DORotate(new Vector3(0, 0, -(360f + resultLocalAngle)), SlowRotatingDuration,
                     RotateMode.FastBeyond360)
-                .SetEase(Ease.OutCirc);
+                .SetEase(Ease.OutCirc));
+            
+            sequence.Play();
 
-            await UniTask.Delay(TimeSpan.FromSeconds(SlowRotatingDuration));
+            await UniTask.Delay(TimeSpan.FromSeconds(SlowRotatingDuration + FastRotatingDuration));
         }
 
         private async UniTask UpdateSectors()
