@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using WheelOfFortune.GameplayScene.FortuneWheelLogic;
 using WheelOfFortune.GameplayScene.UI;
+using WheelOfFortune.Services;
 using Zenject;
 
 namespace WheelOfFortune.GameplayScene
@@ -10,13 +11,16 @@ namespace WheelOfFortune.GameplayScene
         private FortuneWheel fortuneWheel;
         private FortuneWheelView wheelView;
         private SpinButton spinButton;
+        private PlayerScoreService playerScoreService;
 
         [Inject]
         public GameplaySceneLifecycle(
             FortuneWheel fortuneWheel, 
             FortuneWheelView wheelView,
-            SpinButton spinButton)
+            SpinButton spinButton, 
+            PlayerScoreService playerScoreService)
         {
+            this.playerScoreService = playerScoreService;
             this.spinButton = spinButton;
             this.wheelView = wheelView;
             this.fortuneWheel = fortuneWheel;
@@ -39,8 +43,10 @@ namespace WheelOfFortune.GameplayScene
             await spinButton.Lock();
             
             fortuneWheel.Spin();
-            await wheelView.PlaySpinAnimation();
+            playerScoreService.IncreaseScore(fortuneWheel.ResultValue);
             
+            await wheelView.PlaySpinAnimation();
+
             await spinButton.Unlock();
         }
     }
