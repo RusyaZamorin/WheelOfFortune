@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 using WheelOfFortune.GameplayScene.FortuneWheelLogic;
 using WheelOfFortune.GameplayScene.UI;
 using WheelOfFortune.Services;

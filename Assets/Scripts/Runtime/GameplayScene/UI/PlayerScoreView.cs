@@ -24,7 +24,15 @@ namespace WheelOfFortune.GameplayScene.UI
         private void SetScore() => 
             TextField.text = GetFormattedScore();
 
-        private string GetFormattedScore() => 
-            playerScoreService.PlayerScore.ToString();
+        private string GetFormattedScore()
+        {
+            var score = playerScoreService.PlayerScore;
+            return score switch
+            {
+                < 1000 => score.ToString(),
+                > 1000 and < 1000000 => score / 1000 + "k",
+                _ => $"{score / 1000000}m {score % 1000000/ 1000}k"
+            };
+        } 
     }
 }
