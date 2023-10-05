@@ -12,7 +12,8 @@ namespace WheelOfFortune.Installers
         public FortuneWheelSettings FortuneWheelSettings;
         public FortuneWheelView FortuneWheelView;
         public SpinButton SpinButton;
-
+        public PlayerScoreView PlayerScoreView;
+        
         public override void InstallBindings()
         {
             BindRandomizer();
@@ -25,6 +26,7 @@ namespace WheelOfFortune.Installers
         private void BindUI()
         {
             Container.BindInstance(SpinButton).AsSingle();
+            Container.BindInstance(PlayerScoreView).AsSingle();
             Container.BindInstance(FortuneWheelView).AsSingle();
         }
 
