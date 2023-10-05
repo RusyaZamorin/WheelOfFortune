@@ -48,7 +48,6 @@ namespace WheelOfFortune.GameplayScene
             await spinButton.Lock();
             
             fortuneWheel.Spin();
-            Debug.Log(fortuneWheel.ResultValue);
             playerScoreService.IncreaseScore(fortuneWheel.ResultValue);
             
             await wheelView.PlaySpinAnimation();

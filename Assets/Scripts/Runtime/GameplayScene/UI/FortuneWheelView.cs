@@ -13,11 +13,14 @@ namespace WheelOfFortune.GameplayScene.UI
     {
         public List<WheelSector> Sectors;
         public Transform WheelRotationTransform;
-        private FortuneWheel fortuneWheel;
-
+        public WheelArrow WheelArrow;
+        public AudioSource AudioSource;
+        
         public float FastRotatingDuration = 2f;
         public float SlowRotatingDuration = 2f;
         public int NumberFastRotating = 10;
+        
+        private FortuneWheel fortuneWheel;
 
         [Inject]
         public void Construct(FortuneWheel fortuneWheel) =>
@@ -29,6 +32,8 @@ namespace WheelOfFortune.GameplayScene.UI
         public async UniTask PlaySpinAnimation()
         {
             await UpdateSectors();
+            AudioSource.Play();
+            WheelArrow.PlayAnimation(FastRotatingDuration + SlowRotatingDuration);
             await PlayWheelAnimation();
         }
 
