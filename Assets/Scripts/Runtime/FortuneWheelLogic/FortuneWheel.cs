@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WheelOfFortune.Randomization;
 using Zenject;
 
@@ -6,9 +7,11 @@ namespace WheelOfFortune.FortuneWheelLogic
 {
     public class FortuneWheel
     {
-        public List<int> SectionValues { get; private set; }
+        public List<int> SectorValues { get; private set; }
         public int ResultValue { get; private set; }
-        public int SectionsCount => settings.SectionsCount;
+        public int SectorsCount => settings.SectionsCount;
+
+        public event Action Spined;
         
         private FortuneWheelRandomizer randomizer;
         private FortuneWheelSettings settings;
@@ -22,9 +25,10 @@ namespace WheelOfFortune.FortuneWheelLogic
 
         public int Spin()
         {
-            SectionValues = randomizer.GetRandomValues(settings.SectionsCount);
-            ResultValue = SectionValues.TakeRandom();
+            SectorValues = randomizer.GetRandomValues(settings.SectionsCount);
+            ResultValue = SectorValues.TakeRandom();
             
+            Spined?.Invoke();
             return ResultValue;
         }
     }
