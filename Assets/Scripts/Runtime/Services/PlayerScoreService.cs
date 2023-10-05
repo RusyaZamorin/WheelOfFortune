@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using WheelOfFortune.Services.SaveLoad;
+﻿using WheelOfFortune.Services.SaveLoad;
 using Zenject;
 
 namespace WheelOfFortune.Services

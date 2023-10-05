@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WheelOfFortune
 {
-    public static class ListExtension
+    public static class ListExtensions
     {
         private static Random random = new(DateTime.Now.Millisecond);
 
