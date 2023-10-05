@@ -36,7 +36,7 @@ namespace WheelOfFortune.Services
         private void LoadScore()
         {
             if (saveLoadService.Load(ScoreSaveKey, out int loadedValue))
-                PlayerScore = loadedValue;
+                playerScore = loadedValue;
         }
     }
 }

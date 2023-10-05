@@ -26,9 +26,6 @@ namespace WheelOfFortune.GameplayScene.UI
         public void Construct(FortuneWheel fortuneWheel) =>
             this.fortuneWheel = fortuneWheel;
 
-        public UniTask Setup() =>
-            UpdateSectors();
-
         public async UniTask PlaySpinAnimation()
         {
             await UpdateSectors();

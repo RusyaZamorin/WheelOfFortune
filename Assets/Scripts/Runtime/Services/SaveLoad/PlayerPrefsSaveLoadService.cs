@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Newtonsoft.Json;
+using UnityEngine;
 
 namespace WheelOfFortune.Services.SaveLoad
 {
@@ -6,20 +8,31 @@ namespace WheelOfFortune.Services.SaveLoad
     {
         public void Save<T>(T value, string key)
         {
-            var jsonValue = JsonUtility.ToJson(value);
+
+            var jsonValue = JsonConvert.SerializeObject(value);
             PlayerPrefs.SetString(key, jsonValue);
         }
 
         public bool Load<T>(string key, out T loadedValue)
         {
+            loadedValue = default;
+
             if (PlayerPrefs.HasKey(key))
             {
                 var jsonValue = PlayerPrefs.GetString(key);
-                loadedValue = JsonUtility.FromJson<T>(jsonValue);
+                try
+                {
+                    loadedValue = JsonConvert.DeserializeObject<T>(jsonValue);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return false;
+                }
+                
                 return true;
             }
 
-            loadedValue = default;
             return false;
         }
         

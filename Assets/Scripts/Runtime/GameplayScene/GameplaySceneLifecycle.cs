@@ -36,11 +36,10 @@ namespace WheelOfFortune.GameplayScene
             spinButton.Click += () => SpinFortuneWheel();
         }
 
-        public async UniTask SetupScene()
+        public void SetupScene()
         {
             fortuneWheel.Spin();
             playerScoreView.Setup();
-            await wheelView.Setup();
         }
         
         public async UniTask SpinFortuneWheel()
