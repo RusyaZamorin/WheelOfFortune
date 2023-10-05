@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace WheelOfFortune.Randomization
+namespace WheelOfFortune.GameplayScene.FortuneWheelRandomization
 {
     [CreateAssetMenu(fileName = nameof(FortuneWheelRandomizationSettings),
         menuName = nameof(WheelOfFortune) + "/" + nameof(FortuneWheelRandomizationSettings), order = 0)]

@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace WheelOfFortune.UI
+namespace WheelOfFortune.GameplayScene.UI
 {
     public class WheelSector : MonoBehaviour
     {

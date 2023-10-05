@@ -1,33 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using WheelOfFortune.FortuneWheelLogic;
+using WheelOfFortune.GameplayScene.FortuneWheelLogic;
 using Zenject;
 
-namespace WheelOfFortune.UI
+namespace WheelOfFortune.GameplayScene.UI
 {
-    public class FortuneWheelView : MonoBehaviour, IInitializable
+    public class FortuneWheelView : MonoBehaviour
     {
         public List<WheelSector> Sectors;
         private FortuneWheel fortuneWheel;
 
-        public event Action SpinAnimationFinished;
-        
         [Inject]
         public void Construct(FortuneWheel fortuneWheel) => 
             this.fortuneWheel = fortuneWheel;
 
-        public void Initialize() => 
-            fortuneWheel.Spined += PlaySpinAnimation;
+        public UniTask Setup() => 
+            UpdateSectors();
 
-        public void TestSpin()
-        {
-            fortuneWheel.Spin();
-        }
-        
-        private async void PlaySpinAnimation()
+        public async UniTask PlaySpinAnimation()
         {
             await UpdateSectors();
             await PlayWheelAnimation();
@@ -38,7 +30,7 @@ namespace WheelOfFortune.UI
             
         }
         
-        private async Task UpdateSectors()
+        private async UniTask UpdateSectors()
         {
             for (var i = 0; i < fortuneWheel.SectorsCount; i++)
             {

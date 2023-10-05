@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace WheelOfFortune.FortuneWheelLogic
+namespace WheelOfFortune.GameplayScene.FortuneWheelLogic
 {
     [CreateAssetMenu(fileName = nameof(FortuneWheelSettings),
         menuName = nameof(WheelOfFortune) + "/" + nameof(FortuneWheelSettings), order = 0)]

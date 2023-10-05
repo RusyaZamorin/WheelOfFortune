@@ -1142,6 +1142,7 @@ MonoBehaviour:
   RandomizationSettings: {fileID: 11400000, guid: 66f44b2266f8a9a44a3b5b011a1c1443, type: 2}
   FortuneWheelSettings: {fileID: 11400000, guid: dd04f35557e34d14bb1bcd065ed3815c, type: 2}
   FortuneWheelView: {fileID: 1899459744}
+  SpinButton: {fileID: 1899459746}
 --- !u!114 &975291530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2564,6 +2565,7 @@ GameObject:
   - component: {fileID: 1899459742}
   - component: {fileID: 1899459744}
   - component: {fileID: 1899459745}
+  - component: {fileID: 1899459746}
   m_Layer: 5
   m_Name: FortuneWheel
   m_TagString: Untagged
@@ -2697,6 +2699,18 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1899459746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899459740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8697a4e3625d4e8fa2f1f5aedf1c8b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1951976290
 GameObject:
   m_ObjectHideFlags: 0

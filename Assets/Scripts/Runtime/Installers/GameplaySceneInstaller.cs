@@ -1,6 +1,7 @@
-﻿using WheelOfFortune.FortuneWheelLogic;
-using WheelOfFortune.Randomization;
-using WheelOfFortune.UI;
+﻿using WheelOfFortune.GameplayScene;
+using WheelOfFortune.GameplayScene.FortuneWheelLogic;
+using WheelOfFortune.GameplayScene.FortuneWheelRandomization;
+using WheelOfFortune.GameplayScene.UI;
 using Zenject;
 
 namespace WheelOfFortune.Installers
@@ -10,26 +11,27 @@ namespace WheelOfFortune.Installers
         public FortuneWheelRandomizationSettings RandomizationSettings;
         public FortuneWheelSettings FortuneWheelSettings;
         public FortuneWheelView FortuneWheelView;
+        public SpinButton SpinButton;
 
         public override void InstallBindings()
         {
             BindRandomizer();
             BindFortuneWheel();
             BindUI();
+            
+            Container.BindInterfacesAndSelfTo<GameplaySceneLifecycle>().AsSingle();
         }
 
         private void BindUI()
         {
-            Container
-                .Bind(typeof(FortuneWheelView), typeof(IInitializable))
-                .FromInstance(FortuneWheelView)
-                .AsSingle();
+            Container.BindInstance(SpinButton).AsSingle();
+            Container.BindInstance(FortuneWheelView).AsSingle();
         }
 
         private void BindFortuneWheel()
         {
-            Container.Bind<FortuneWheel>().AsSingle();
             Container.BindInstance(FortuneWheelSettings).AsSingle();
+            Container.Bind<FortuneWheel>().AsSingle();
         }
 
         private void BindRandomizer()
