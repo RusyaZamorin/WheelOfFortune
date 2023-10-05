@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WheelOfFortune.Randomization
+namespace WheelOfFortune
 {
-    public static class ShuffleExtension
+    public static class ListExtension
     {
-        private static Random random = new();
-        
+        private static Random random = new(DateTime.Now.Millisecond);
+
+        public static T TakeRandom<T>(this List<T> list) => 
+            list[UnityEngine.Random.Range(0, list.Count)];
+
         public static void Shuffle<T>(this List<T> list)
         {
             var n = list.Count;
