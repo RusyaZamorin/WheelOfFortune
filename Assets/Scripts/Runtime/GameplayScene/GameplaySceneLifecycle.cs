@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 using WheelOfFortune.GameplayScene.FortuneWheelLogic;
 using WheelOfFortune.GameplayScene.UI;
 using WheelOfFortune.Services;
@@ -47,6 +48,7 @@ namespace WheelOfFortune.GameplayScene
             await spinButton.Lock();
             
             fortuneWheel.Spin();
+            Debug.Log(fortuneWheel.ResultValue);
             playerScoreService.IncreaseScore(fortuneWheel.ResultValue);
             
             await wheelView.PlaySpinAnimation();
